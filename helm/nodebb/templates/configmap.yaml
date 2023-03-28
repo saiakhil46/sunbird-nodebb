@@ -20,3 +20,4 @@ data:
   redis__password: {{ .Values.redis__password | quote }}
   redis__port: {{ .Values.redis__port | quote }}
   secret: {{ .Values.secret }}
+  url: {{ .Values.url }}
