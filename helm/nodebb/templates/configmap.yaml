@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+  namespace: {{ .Release.Namespace }}
+data:
+
+  {{/* This section has variables which in turn contain one or more mandatory variables */}}
+
+  {{/* This section has variables with default values */}}
+  NODE_OPTIONS: {{ .Values.NODE_OPTIONS | quote }}
+  admin__password: {{ .Values.admin__password | quote }}
+  admin__username: {{ .Values.admin__username }}
+  database: {{ .Values.database }}
+  isCluster: {{ .Values.isCluster | quote }}
+  redis__database: {{ .Values.redis__database | quote }}
+  redis__host: {{ .Values.redis__host }}
+  redis__username: {{ .Values.redis__username | quote }}
+  redis__password: {{ .Values.redis__password | quote }}
+  redis__port: {{ .Values.redis__port | quote }}
+  secret: {{ .Values.secret }}

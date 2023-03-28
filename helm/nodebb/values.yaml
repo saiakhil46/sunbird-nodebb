@@ -1,0 +1,84 @@
+## This section has mandatory variables
+## You must provide a value for these
+## If you don't provide a value for these variables, the chart installation will not proceed
+
+## This section has variables with default values
+## These are standard defaults that work well
+## You can override these if you have a use case for it
+NODE_OPTIONS: "1024"
+admin__password: mySuperSecretNodebbPassword
+admin__username: nodebb
+database: redis
+isCluster: "false"
+redis__database: '10'
+redis__host: redis.lern.svc.cluster.local
+redis__username: ""
+redis__password: ""
+redis__port: "6379"
+secret: 1d57ba64-86d4-43ff-bd10-f6e9e0782899
+url: http://0.0.0.0:4567/discussions/
+
+## Variables with empty values
+## The value for these variables will be contstucted using other variables
+## If you provide a value to the variable, then that will take the highest precedence
+## It's recommended to leave these blanks unless you have a strong use case to override them
+
+## Set this value to true when developing the chart
+local_chart_development: false
+
+
+## This section has other kubernetes variables
+## These are standard defaults that work well
+## You can override these if you have a use case for it
+image:
+  registry: docker.io
+  repository: ssksanthosh/nodebb
+  tag: release-5.0.0_RC1_1_v1.18.6
+
+replicaCount: 1
+
+strategy:
+  maxSurge: 25%
+  maxUnavailable: 25%
+
+imagePullSecrets: ""
+
+javaOptions: -Xmx600m
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 100M
+  limits:
+    cpu: 1
+    memory: 1G
+
+port: 9000
+
+targetPort: 9000
+
+livenessProbe:
+  failureThreshold: 2
+  httpGet:
+      path: /discussions/api/category/2
+      port: 4567
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+
+readinessProbe:
+  failureThreshold: 2
+  httpGet:
+      path: /discussions/api/category/2
+      port: 4567
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  timeoutSeconds: 5
+
+initcontainer_resources:
+  requests:
+    cpu: 100m
+    memory: 100M
+  limits:
+    cpu: 100m
+    memory: 100M
