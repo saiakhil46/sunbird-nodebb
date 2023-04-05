@@ -11,7 +11,7 @@ admin__username: nodebb
 database: redis
 isCluster: "false"
 redis__database: '10'
-redis__host: redis.lern.svc.cluster.local
+redis__host: redis-master.lern.svc.cluster.local
 redis__username: ""
 redis__password: ""
 redis__port: "6379"
@@ -53,25 +53,25 @@ resources:
     cpu: 1
     memory: 1G
 
-port: 9000
+port: 4567
 
-targetPort: 9000
+targetPort: 4567
 
 livenessProbe:
-  failureThreshold: 2
+  failureThreshold: 20
   httpGet:
       path: /discussions/api/category/2
       port: 4567
-  initialDelaySeconds: 15
+  initialDelaySeconds: 45
   periodSeconds: 15
   timeoutSeconds: 5
 
 readinessProbe:
-  failureThreshold: 2
+  failureThreshold: 20
   httpGet:
       path: /discussions/api/category/2
       port: 4567
-  initialDelaySeconds: 15
+  initialDelaySeconds: 45
   periodSeconds: 15
   timeoutSeconds: 5
 
