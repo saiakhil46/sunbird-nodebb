@@ -22,6 +22,6 @@ appVersion: 5.0.0
 
 dependencies:
 - name: common
-  repository: https://keshavprasadms.github.io/sunbird-helmchart-templates
+  repository: https://github.com/Sunbird-Ed/sunbird-helmchart-common
   version: 0.1.0
 
